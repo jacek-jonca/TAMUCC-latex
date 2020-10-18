@@ -1,0 +1,98 @@
+\documentclass[pagesize,DIV14]{scrartcl}
+
+%% Fontspec provides an interface to system fonts and Opentype features
+\usepackage{fontspec}
+
+ %% Load default features. An asterisk means they are supposed to be
+ %% enabled by default, but engines may behave differently.
+ \defaultfontfeatures{%
+  RawFeature={%
+    %+calt   % *Contextual alternates
+    %,+clig  % *contextual ligatures
+    %,+ccmp  % *composition & decomposition
+    %,+tlig  % 'tex-ligatures': `` '' -- --- !` ?` << >>
+    ,+cv06  % narrow guillemets
+    }%
+  }
+
+ %% Finally set the main font
+ \setmainfont{EB Garamond}
+
+%% Load Microtype with default settings. This will use the
+%% EB-Garamond protrusion definitions if present.
+\usepackage{microtype}
+
+%% Use polyglossia to handle different languages.
+\usepackage[%
+  babelshorthands % needed to access "| as a ZWNJ symbol
+  ]{polyglossia}
+ \setdefaultlanguage{english}
+
+%% csquotes provides an intelligent for quotation marks
+\usepackage{csquotes}
+
+%% Realscripts allows to easily access the font’s own sub-/superscripts
+%% with \textsuperscript and \textsubscript as well as \textsubsuperscript
+\usepackage{realscripts}
+
+%% Multicol for the two-column samples
+\usepackage{multicol}
+
+%% Format the headings in smallcaps
+\setkomafont{disposition}{\normalcolor\normalfont\rmfamily\scshape}
+
+%% Add page numbers
+\pagenumbering{arabic}
+
+%% define Avenir Next font
+\newfontfamily{\AvenirNext}{AvenirNext}[
+   Extension = .ttf,
+   UprightFont = *-Regular,
+   BoldFont = *-Bold]
+\usepackage{xcolor}
+\definecolor{Blue}{RGB}{0,121,193}
+%\definecolor{Green}{RGB}{0,127,62}
+
+\usepackage{calc} % for getting section heading height
+
+%% Redefine section head definition to change font to Avenir Next and color to TAMUCC Blue and add a bar below
+
+%\makeatletter
+%
+%\renewcommand\section{\@startsection {section}{1}{\z@}%
+%                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+%                                   {-1em}%
+                                  % %{{\vspace{-1.75\baselineskip}\color{Blue}\rule{2em}{1pt}}\newline\AvenirNext\fontsize{1.5em}{1.8em}\selectfont\bfseries\color{Blue}\MakeUppercase}}
+%
+%\makeatother
+
+\makeatletter
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {-1em}%
+                                   {\normalfont}}
+
+\makeatother
+
+
+\let\xsection=\section
+\renewcommand{\section}[1]{\xsection*{\AvenirNext\fontsize{1em}{1.2em}\selectfont\bfseries\color{Blue} \uppercase{#1} \newline \color{Blue}\rule{2em}{1pt}}}
+
+\begin{document}
+
+\section{Introduction}
+\begin{multicols}{2}
+
+\paragraph*{Texas A\&M University -- Corpus Christi}\hspace{-1ex}is one of America's best-kept secrets. Resting on its own \mbox{island} in the heart of the Texas Riviera our campus is a window to the tropics. \textit{We are an exotic land of sunshine, palm trees, and gulf breeze.} Surrounded by the Oso and Corpus Christi Bays, we are minutes from the picturesque beaches of the Padre and Mustang Islands, and the bustling downtown of Corpus Christi. If you enjoy abundant sunshine, all-year surfing, kayaking, and fishing, then the \textsc{Island University} is your own paradise.
+
+\section{Body of Text\newline Two Liner}
+
+\paragraph*{Texas A\&M University -- Corpus Christi}\hspace{-1ex}is one of America's best-kept secrets. Resting on its own \mbox{island} in the heart of the Texas Riviera our campus is a window to the tropics. \textit{We are an exotic land of sunshine, palm trees, and gulf breeze.} Surrounded by the Oso and Corpus Christi Bays, we are minutes from the picturesque beaches of the Padre and Mustang Islands, and the bustling downtown of Corpus Christi. If you enjoy abundant sunshine, all-year surfing, kayaking, and fishing, then the \textsc{Island University} is your own paradise.
+
+\end{multicols}
+
+\clearpage
+
+
+\end{document}
